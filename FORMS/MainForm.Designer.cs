@@ -47,6 +47,7 @@
       this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
       this.panel1 = new System.Windows.Forms.Panel();
       this.listItems = new System.Windows.Forms.ListBox();
+      this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.menuStrip1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
       this.splitContainerMain.Panel1.SuspendLayout();
@@ -104,7 +105,8 @@
       // видToolStripMenuItem
       // 
       this.видToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ViewChannals});
+            this.ViewChannals,
+            this.обновитьToolStripMenuItem});
       this.видToolStripMenuItem.Name = "видToolStripMenuItem";
       this.видToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
       this.видToolStripMenuItem.Text = "Вид";
@@ -130,8 +132,9 @@
       // оПрограммеToolStripMenuItem
       // 
       this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-      this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+      this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
       this.оПрограммеToolStripMenuItem.Text = "О программе";
+      this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.ShowAbout);
       // 
       // splitContainerMain
       // 
@@ -296,6 +299,13 @@
       this.listItems.TabIndex = 1;
       this.listItems.SelectedIndexChanged += new System.EventHandler(this.listItems_SelectedIndexChanged);
       // 
+      // обновитьToolStripMenuItem
+      // 
+      this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
+      this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+      this.обновитьToolStripMenuItem.Text = "Обновить";
+      this.обновитьToolStripMenuItem.Click += new System.EventHandler(this.RefreshChannel);
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -349,6 +359,7 @@
     private System.Windows.Forms.Splitter splitter2;
     private System.Windows.Forms.Panel panel1;
     private System.Windows.Forms.ListBox listItems;
+    private System.Windows.Forms.ToolStripMenuItem обновитьToolStripMenuItem;
   }
 }
 

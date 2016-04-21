@@ -2,24 +2,37 @@
 using System.Xml;
 
 namespace FORMS {
+  /// <summary>
+  /// Упраление и хранение коллекции каналов
+  /// </summary>
   internal static class Controller {
     private static BindingList<Channel> _channels = new BindingList<Channel>();
-    private static BindingList<Item> _currentItem;
+    //private static BindingList<Item> _currentItem;
 
+    /// <summary>
+    /// Коллекция каналов
+    /// </summary>
     internal static BindingList<Channel> Channels => _channels;
 
-    public static bool ContaineTitle(string title) {
-      foreach (var channel in _channels) {
-        if (channel.Title == title)
-          return true;
-      }
-      return false;
-    }
+    ///// <summary>
+    ///// Возвращает коллекцию эелементов новостей по индексу в коллекции каналов
+    ///// </summary>
+    ///// <param name="id">Индекс коллекции элементов новостей</param>
+    ///// <returns>Коллекция элементов новостей</returns>
+    //public static BindingList<Item> GetItems(int id) => _currentItem = _channels[id].GetItems();
 
-    public static BindingList<Item> GetItems(int id) => _currentItem = _channels[id].GetItems();
+    ///// <summary>
+    ///// Возвращает элемент новости
+    ///// </summary>
+    ///// <param name="id">Индекс элемента новости</param>
+    ///// <returns>Элемент новости</returns>
+    //public static Item GeItem(int id) => _currentItem[id];
 
-    public static Item GeItem(int id) => _currentItem[id];
-
+    /// <summary>
+    /// Выполяет загрузку канала по адрессу
+    /// </summary>
+    /// <param name="url">Адресс канала</param>
+    /// <returns>Результат</returns>
     public static string ParseChannel(string url) {
       var rssDocument = new XmlDocument();
       try {
@@ -31,7 +44,7 @@ namespace FORMS {
 
       var node = rssDocument.SelectSingleNode("rss/channel") as XmlElement;
 
-      if (node == null) 
+      if (node == null)
         return "Файл имеет недопустимый формат.";
 
       var title = node["title"].InnerText;
@@ -40,14 +53,14 @@ namespace FORMS {
 
       var imgNode = node["image"];
       RssImage image = null;
-      if (imgNode != null) 
+      if (imgNode != null)
         image = new RssImage(
           imgNode["url"].InnerText,
           imgNode["link"].InnerText,
           imgNode["title"].InnerText);
 
       var rssNodes = rssDocument.SelectNodes("rss/channel/item");
-      
+
       var items = new BindingList<Item>();
       foreach (XmlNode nd in rssNodes) {
         string imgUrl = nd["enclosure"]?.GetAttribute("url");
@@ -60,8 +73,18 @@ namespace FORMS {
           imgUrl));
       }
 
-      _channels.Add(new Channel(image, link, description, title, items, url));
+      _channels.Add(new Channel(image, link, title, description, items, url));
       return null;
+    }
+    /// <summary>
+    /// Выполняет обновление каналов лент
+    /// </summary>
+    public static void Refresh() {
+      BindingList<Channel> channels = _channels;
+      _channels = new BindingList<Channel>();
+      foreach (Channel channel in channels) {
+        ParseChannel(channel.Path);
+      }
     }
   }
 }

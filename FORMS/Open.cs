@@ -7,6 +7,11 @@ namespace FORMS {
       InitializeComponent();
     }
 
+    /// <summary>
+    /// Открытие rss канала по адресу
+    /// </summary>
+    /// <param name="sender" />
+    /// <param name="e" />
     private void button1_Click(object sender, EventArgs e) {
       string responce = null;
       if (url.Text != string.Empty)
