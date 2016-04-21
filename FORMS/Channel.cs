@@ -1,26 +1,29 @@
 ﻿using System.Collections.Generic;
-using static System.Windows.Forms.LinkLabel;
+using System.ComponentModel;
 
 namespace FORMS {
   internal class Channel {
-    private readonly List<Item> _items;
+    private readonly BindingList<Item> _items;
 
-    public Channel(RssImage image, string link, string description, string title, List<Item> items) {
+    public Channel(RssImage image, string link, string description, string title, BindingList<Item> items, string path) {
       Image = image;
       Description = description;
       Title = title;
       _items = items;
-      Link.Description = link;
+      Path = path;
+      Link = link;
     }
+    
+    public string Path { get; }
 
     public string Title { get; }
 
     public RssImage Image { get; }
 
-    public Link Link { get; }
+    public string Link { get; }
 
     public string Description { get; }
 
-    public List<Item> GetItems() => _items;
+    public BindingList<Item> GetItems() => _items;
   }
 }

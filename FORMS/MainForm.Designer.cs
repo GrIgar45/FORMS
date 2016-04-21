@@ -27,7 +27,6 @@
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.открытьURLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.открытьИзФайлаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
       this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.сохранитьКакToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,14 +37,14 @@
       this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.splitContainerMain = new System.Windows.Forms.SplitContainer();
-      this.ListURL = new System.Windows.Forms.CheckedListBox();
       this.splitContainerChild = new System.Windows.Forms.SplitContainer();
       this.pictureBox2 = new System.Windows.Forms.PictureBox();
-      this.listBox1 = new System.Windows.Forms.ListBox();
+      this.listItems = new System.Windows.Forms.ListBox();
       this.splitter1 = new System.Windows.Forms.Splitter();
       this.link = new System.Windows.Forms.LinkLabel();
-      this.textBox1 = new System.Windows.Forms.TextBox();
-      this.pictureBox1 = new System.Windows.Forms.PictureBox();
+      this.descriptionText = new System.Windows.Forms.TextBox();
+      this.itemBox = new System.Windows.Forms.PictureBox();
+      this.ListURL = new System.Windows.Forms.ListBox();
       this.menuStrip1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
       this.splitContainerMain.Panel1.SuspendLayout();
@@ -56,7 +55,7 @@
       this.splitContainerChild.Panel2.SuspendLayout();
       this.splitContainerChild.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.itemBox)).BeginInit();
       this.SuspendLayout();
       // 
       // statusStrip1
@@ -84,7 +83,6 @@
       // 
       this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.открытьURLToolStripMenuItem,
-            this.открытьИзФайлаToolStripMenuItem,
             this.toolStripSeparator1,
             this.сохранитьToolStripMenuItem,
             this.сохранитьКакToolStripMenuItem,
@@ -97,42 +95,36 @@
       // открытьURLToolStripMenuItem
       // 
       this.открытьURLToolStripMenuItem.Name = "открытьURLToolStripMenuItem";
-      this.открытьURLToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-      this.открытьURLToolStripMenuItem.Text = "Открыть URL";
+      this.открытьURLToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+      this.открытьURLToolStripMenuItem.Text = "Добавить канал";
       this.открытьURLToolStripMenuItem.Click += new System.EventHandler(this.OpenUrl);
-      // 
-      // открытьИзФайлаToolStripMenuItem
-      // 
-      this.открытьИзФайлаToolStripMenuItem.Name = "открытьИзФайлаToolStripMenuItem";
-      this.открытьИзФайлаToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-      this.открытьИзФайлаToolStripMenuItem.Text = "Открыть из файла";
       // 
       // toolStripSeparator1
       // 
       this.toolStripSeparator1.Name = "toolStripSeparator1";
-      this.toolStripSeparator1.Size = new System.Drawing.Size(171, 6);
+      this.toolStripSeparator1.Size = new System.Drawing.Size(158, 6);
       // 
       // сохранитьToolStripMenuItem
       // 
       this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-      this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+      this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
       this.сохранитьToolStripMenuItem.Text = "Сохранить";
       // 
       // сохранитьКакToolStripMenuItem
       // 
       this.сохранитьКакToolStripMenuItem.Name = "сохранитьКакToolStripMenuItem";
-      this.сохранитьКакToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+      this.сохранитьКакToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
       this.сохранитьКакToolStripMenuItem.Text = "Сохранить как";
       // 
       // toolStripSeparator2
       // 
       this.toolStripSeparator2.Name = "toolStripSeparator2";
-      this.toolStripSeparator2.Size = new System.Drawing.Size(171, 6);
+      this.toolStripSeparator2.Size = new System.Drawing.Size(158, 6);
       // 
       // выходToolStripMenuItem
       // 
       this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-      this.выходToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+      this.выходToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
       this.выходToolStripMenuItem.Text = "Выход";
       // 
       // видToolStripMenuItem
@@ -184,19 +176,6 @@
       this.splitContainerMain.TabIndex = 2;
       this.splitContainerMain.TabStop = false;
       // 
-      // ListURL
-      // 
-      this.ListURL.BorderStyle = System.Windows.Forms.BorderStyle.None;
-      this.ListURL.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.ListURL.FormattingEnabled = true;
-      this.ListURL.Items.AddRange(new object[] {
-            "1",
-            "2"});
-      this.ListURL.Location = new System.Drawing.Point(0, 0);
-      this.ListURL.Name = "ListURL";
-      this.ListURL.Size = new System.Drawing.Size(128, 325);
-      this.ListURL.TabIndex = 0;
-      // 
       // splitContainerChild
       // 
       this.splitContainerChild.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -210,14 +189,14 @@
       // 
       this.splitContainerChild.Panel1.BackColor = System.Drawing.SystemColors.Window;
       this.splitContainerChild.Panel1.Controls.Add(this.pictureBox2);
-      this.splitContainerChild.Panel1.Controls.Add(this.listBox1);
+      this.splitContainerChild.Panel1.Controls.Add(this.listItems);
       // 
       // splitContainerChild.Panel2
       // 
       this.splitContainerChild.Panel2.Controls.Add(this.splitter1);
       this.splitContainerChild.Panel2.Controls.Add(this.link);
-      this.splitContainerChild.Panel2.Controls.Add(this.textBox1);
-      this.splitContainerChild.Panel2.Controls.Add(this.pictureBox1);
+      this.splitContainerChild.Panel2.Controls.Add(this.descriptionText);
+      this.splitContainerChild.Panel2.Controls.Add(this.itemBox);
       this.splitContainerChild.Panel2MinSize = 124;
       this.splitContainerChild.Size = new System.Drawing.Size(622, 327);
       this.splitContainerChild.SplitterDistance = 198;
@@ -233,22 +212,24 @@
       this.pictureBox2.TabIndex = 1;
       this.pictureBox2.TabStop = false;
       // 
-      // listBox1
+      // listItems
       // 
-      this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-      this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.listBox1.FormattingEnabled = true;
-      this.listBox1.Location = new System.Drawing.Point(0, 0);
-      this.listBox1.Name = "listBox1";
-      this.listBox1.Size = new System.Drawing.Size(620, 196);
-      this.listBox1.TabIndex = 0;
+      this.listItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
+      this.listItems.DisplayMember = "Title";
+      this.listItems.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.listItems.FormattingEnabled = true;
+      this.listItems.Location = new System.Drawing.Point(0, 0);
+      this.listItems.Name = "listItems";
+      this.listItems.Size = new System.Drawing.Size(620, 196);
+      this.listItems.TabIndex = 0;
+      this.listItems.Click += new System.EventHandler(this.listItems_Click);
       // 
       // splitter1
       // 
       this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.splitter1.Location = new System.Drawing.Point(200, 107);
+      this.splitter1.Location = new System.Drawing.Point(0, 107);
       this.splitter1.Name = "splitter1";
-      this.splitter1.Size = new System.Drawing.Size(420, 3);
+      this.splitter1.Size = new System.Drawing.Size(620, 3);
       this.splitter1.TabIndex = 3;
       this.splitter1.TabStop = false;
       // 
@@ -256,31 +237,44 @@
       // 
       this.link.AutoSize = true;
       this.link.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.link.Location = new System.Drawing.Point(200, 110);
+      this.link.Location = new System.Drawing.Point(0, 110);
       this.link.Name = "link";
       this.link.Size = new System.Drawing.Size(0, 13);
       this.link.TabIndex = 2;
       // 
-      // textBox1
+      // descriptionText
       // 
-      this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-      this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-      this.textBox1.Location = new System.Drawing.Point(200, 0);
-      this.textBox1.Multiline = true;
-      this.textBox1.Name = "textBox1";
-      this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-      this.textBox1.Size = new System.Drawing.Size(420, 107);
-      this.textBox1.TabIndex = 1;
+      this.descriptionText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+      this.descriptionText.Dock = System.Windows.Forms.DockStyle.Top;
+      this.descriptionText.Location = new System.Drawing.Point(0, 0);
+      this.descriptionText.Multiline = true;
+      this.descriptionText.Name = "descriptionText";
+      this.descriptionText.ReadOnly = true;
+      this.descriptionText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+      this.descriptionText.Size = new System.Drawing.Size(620, 107);
+      this.descriptionText.TabIndex = 1;
       // 
-      // pictureBox1
+      // itemBox
       // 
-      this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
-      this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-      this.pictureBox1.Name = "pictureBox1";
-      this.pictureBox1.Size = new System.Drawing.Size(200, 123);
-      this.pictureBox1.TabIndex = 0;
-      this.pictureBox1.TabStop = false;
+      this.itemBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+      this.itemBox.Dock = System.Windows.Forms.DockStyle.Left;
+      this.itemBox.Location = new System.Drawing.Point(0, 0);
+      this.itemBox.Name = "itemBox";
+      this.itemBox.Size = new System.Drawing.Size(0, 123);
+      this.itemBox.TabIndex = 0;
+      this.itemBox.TabStop = false;
+      // 
+      // ListURL
+      // 
+      this.ListURL.BorderStyle = System.Windows.Forms.BorderStyle.None;
+      this.ListURL.DisplayMember = "Title";
+      this.ListURL.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.ListURL.FormattingEnabled = true;
+      this.ListURL.Location = new System.Drawing.Point(0, 0);
+      this.ListURL.Name = "ListURL";
+      this.ListURL.Size = new System.Drawing.Size(128, 325);
+      this.ListURL.TabIndex = 0;
+      this.ListURL.DoubleClick += new System.EventHandler(this.ListURL_DoubleClick);
       // 
       // MainForm
       // 
@@ -305,7 +299,7 @@
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerChild)).EndInit();
       this.splitContainerChild.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.itemBox)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -317,7 +311,6 @@
     private System.Windows.Forms.MenuStrip menuStrip1;
     private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem открытьURLToolStripMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem открытьИзФайлаToolStripMenuItem;
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem сохранитьКакToolStripMenuItem;
@@ -329,13 +322,13 @@
     private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
     private System.Windows.Forms.SplitContainer splitContainerMain;
     private System.Windows.Forms.SplitContainer splitContainerChild;
-    private System.Windows.Forms.CheckedListBox ListURL;
-    private System.Windows.Forms.ListBox listBox1;
-    private System.Windows.Forms.PictureBox pictureBox1;
+    private System.Windows.Forms.ListBox listItems;
+    private System.Windows.Forms.PictureBox itemBox;
     private System.Windows.Forms.LinkLabel link;
     private System.Windows.Forms.Splitter splitter1;
     private System.Windows.Forms.PictureBox pictureBox2;
-    private System.Windows.Forms.TextBox textBox1;
+    private System.Windows.Forms.TextBox descriptionText;
+    private System.Windows.Forms.ListBox ListURL;
   }
 }
 

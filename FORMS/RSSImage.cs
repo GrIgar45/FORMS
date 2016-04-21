@@ -11,26 +11,32 @@ namespace FORMS {
 
     public string Url { get; }
 
+    public RssImage(string link) {
+      GetBitmap(link);
+    }
+
     public RssImage(string url, string title, string link) {
       Url = url;
       Title = title;
       Link = link;
-      GetBitmap(url);
+      Image = GetBitmap(url);
     }
 
-    private void GetBitmap(string url) {
-      var wreq = WebRequest.Create(url) as HttpWebRequest;
+    public static Bitmap GetBitmap(string url) {
+      Bitmap bm = null;
       try {
-        if (wreq == null) return;
+      var wreq = WebRequest.Create(url) as HttpWebRequest;
+        if (wreq == null) return null;
         using (var wresp = wreq.GetResponse() as HttpWebResponse) {
           using (var stream = wresp.GetResponseStream())
             if (stream != null)
-              Image = new Bitmap(stream);
+              bm = new Bitmap(stream);
         }
       }
       catch {
-        // ignored
+        return null;
       }
+      return bm;
     }
   }
 }

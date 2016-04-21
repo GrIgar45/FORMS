@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FORMS {
   public sealed partial class OpenUrlForm : Form {
-    public OpenUrlForm(string title) {
-      this.Text = title;
+    public OpenUrlForm() {
       InitializeComponent();
     }
 
@@ -19,9 +11,10 @@ namespace FORMS {
       string responce = null;
       if (url.Text != string.Empty)
         responce = Controller.ParseChannel(url.Text);
-      if (responce == null)
+      if (responce == null && !multipleValue.Checked)
         Close();
-      else url.Text = responce;
+      else 
+        MessageBox.Show(responce, @"Ошибка");
     }
   }
 }

@@ -25,6 +25,7 @@
     private void InitializeComponent() {
       this.url = new System.Windows.Forms.TextBox();
       this.button1 = new System.Windows.Forms.Button();
+      this.multipleValue = new System.Windows.Forms.CheckBox();
       this.SuspendLayout();
       // 
       // url
@@ -45,17 +46,29 @@
       this.button1.UseVisualStyleBackColor = true;
       this.button1.Click += new System.EventHandler(this.button1_Click);
       // 
-      // OpenURLForm
+      // multipleValue
+      // 
+      this.multipleValue.AutoSize = true;
+      this.multipleValue.Location = new System.Drawing.Point(12, 32);
+      this.multipleValue.Name = "multipleValue";
+      this.multipleValue.Size = new System.Drawing.Size(127, 17);
+      this.multipleValue.TabIndex = 2;
+      this.multipleValue.Text = "Добавить еще один";
+      this.multipleValue.UseVisualStyleBackColor = true;
+      // 
+      // OpenUrlForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.AutoSize = true;
       this.ClientSize = new System.Drawing.Size(284, 51);
+      this.Controls.Add(this.multipleValue);
       this.Controls.Add(this.button1);
       this.Controls.Add(this.url);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
       this.Name = "OpenUrlForm";
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+      this.Text = "Добавление канала";
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -65,5 +78,6 @@
 
     private System.Windows.Forms.TextBox url;
     private System.Windows.Forms.Button button1;
+    private System.Windows.Forms.CheckBox multipleValue;
   }
 }
