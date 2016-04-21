@@ -1,5 +1,7 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace FORMS {
@@ -11,15 +13,16 @@ namespace FORMS {
     /// <summary>
     /// Выполняет отображение формы открытия файла
     /// </summary>
-    private void OpenUrl(object sender, System.EventArgs e) {
+    private void OpenUrl(object sender, EventArgs e) {
       var f = new OpenUrlForm();
       f.ShowDialog();
       ListURL.DataSource = Controller.Channels;
+      removeChannel.Enabled = true;
     }
     /// <summary>
     /// Выполняет отображение списка новостей
     /// </summary>
-    private void ListURL_DoubleClick(object sender, System.EventArgs e) {
+    private void ListURL_DoubleClick(object sender, EventArgs e) {
       Channel channel;
       if (ListURL.Items.Count == 0) {
         return;
@@ -38,7 +41,7 @@ namespace FORMS {
     /// <summary>
     /// Выполняет переход и источнику новости
     /// </summary>
-    private void link_Click(object sender, System.EventArgs e) {
+    private void link_Click(object sender, EventArgs e) {
       Item item = Controller.Channels[ListURL.SelectedIndex].GetItems()[listItems.SelectedIndex];
       Process.Start(item.Link);
     }
@@ -47,7 +50,7 @@ namespace FORMS {
     /// </summary>
     private void listItems_SelectedIndexChanged(object sender, EventArgs e) {
       Item item;
-      if (ListURL.SelectedIndex == -1){
+      if (ListURL.SelectedIndex == -1 || listItems.SelectedIndex == -1) {
         itemBox.Width = 0;
         link.Text = string.Empty;
         description.Text = string.Empty;
@@ -65,7 +68,7 @@ namespace FORMS {
 
       description.Text = item.Description;
       DateTime dt = DateTime.Parse(item.Date);
-      dateLabel.Text = dt.ToString();
+      dateLabel.Text = dt.ToLongTimeString() + @" " + dt.ToLongDateString();
       link.Text = @"Перейти к источнику";
     }
     /// <summary>
@@ -95,8 +98,25 @@ namespace FORMS {
     private void RefreshChannel(object sender, EventArgs e) {
       Controller.Refresh();
       ListURL.ClearSelected();
+      listItems.ClearSelected();
       listItems.DataSource = null;
       listItems.DisplayMember = "Title";
+    }
+
+    private void removeChannel_Click(object sender, EventArgs e) {
+      int id = ListURL.SelectedIndex;
+      listItems.ClearSelected();
+      listItems.DataSource = null;
+      listItems.DisplayMember = "Title";
+      ListURL.ClearSelected();
+      Controller.removeChannel(id);
+      channelBox.Height = 0;
+      if (ListURL.Items.Count == 0)
+        removeChannel.Enabled = false;
+    }
+
+    private void выходToolStripMenuItem_Click(object sender, EventArgs e) {
+      Close();
     }
   }
 }

@@ -32,11 +32,14 @@
       this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.видToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.ViewChannals = new System.Windows.Forms.ToolStripMenuItem();
+      this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.splitContainerMain = new System.Windows.Forms.SplitContainer();
       this.ListURL = new System.Windows.Forms.ListBox();
       this.splitContainerChild = new System.Windows.Forms.SplitContainer();
+      this.panel1 = new System.Windows.Forms.Panel();
+      this.listItems = new System.Windows.Forms.ListBox();
       this.splitter2 = new System.Windows.Forms.Splitter();
       this.channelBox = new System.Windows.Forms.PictureBox();
       this.dateLabel = new System.Windows.Forms.Label();
@@ -45,9 +48,9 @@
       this.description = new System.Windows.Forms.TextBox();
       this.itemBox = new System.Windows.Forms.PictureBox();
       this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-      this.panel1 = new System.Windows.Forms.Panel();
-      this.listItems = new System.Windows.Forms.ListBox();
-      this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+      this.removeChannel = new System.Windows.Forms.ToolStripMenuItem();
+      this.AddChannel = new System.Windows.Forms.ToolStripMenuItem();
       this.menuStrip1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
       this.splitContainerMain.Panel1.SuspendLayout();
@@ -57,9 +60,10 @@
       this.splitContainerChild.Panel1.SuspendLayout();
       this.splitContainerChild.Panel2.SuspendLayout();
       this.splitContainerChild.SuspendLayout();
+      this.panel1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.channelBox)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.itemBox)).BeginInit();
-      this.panel1.SuspendLayout();
+      this.contextMenuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
       // menuStrip1
@@ -101,6 +105,7 @@
       this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
       this.выходToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
       this.выходToolStripMenuItem.Text = "Выход";
+      this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
       // 
       // видToolStripMenuItem
       // 
@@ -121,6 +126,13 @@
       this.ViewChannals.Text = "Список каналов";
       this.ViewChannals.CheckedChanged += new System.EventHandler(this.ViewChannel);
       // 
+      // обновитьToolStripMenuItem
+      // 
+      this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
+      this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+      this.обновитьToolStripMenuItem.Text = "Обновить";
+      this.обновитьToolStripMenuItem.Click += new System.EventHandler(this.RefreshChannel);
+      // 
       // справкаToolStripMenuItem
       // 
       this.справкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -132,7 +144,7 @@
       // оПрограммеToolStripMenuItem
       // 
       this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-      this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+      this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
       this.оПрограммеToolStripMenuItem.Text = "О программе";
       this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.ShowAbout);
       // 
@@ -162,6 +174,7 @@
       // ListURL
       // 
       this.ListURL.BorderStyle = System.Windows.Forms.BorderStyle.None;
+      this.ListURL.ContextMenuStrip = this.contextMenuStrip1;
       this.ListURL.DisplayMember = "Title";
       this.ListURL.Dock = System.Windows.Forms.DockStyle.Fill;
       this.ListURL.FormattingEnabled = true;
@@ -199,6 +212,27 @@
       this.splitContainerChild.SplitterDistance = 220;
       this.splitContainerChild.TabIndex = 0;
       this.splitContainerChild.TabStop = false;
+      // 
+      // panel1
+      // 
+      this.panel1.Controls.Add(this.listItems);
+      this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.panel1.Location = new System.Drawing.Point(0, 3);
+      this.panel1.Name = "panel1";
+      this.panel1.Size = new System.Drawing.Size(620, 215);
+      this.panel1.TabIndex = 3;
+      // 
+      // listItems
+      // 
+      this.listItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
+      this.listItems.DisplayMember = "Title";
+      this.listItems.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.listItems.FormattingEnabled = true;
+      this.listItems.Location = new System.Drawing.Point(0, 0);
+      this.listItems.Name = "listItems";
+      this.listItems.Size = new System.Drawing.Size(620, 215);
+      this.listItems.TabIndex = 1;
+      this.listItems.SelectedIndexChanged += new System.EventHandler(this.listItems_SelectedIndexChanged);
       // 
       // splitter2
       // 
@@ -278,33 +312,28 @@
       // 
       this.toolTip1.AutomaticDelay = 5000;
       // 
-      // panel1
+      // contextMenuStrip1
       // 
-      this.panel1.Controls.Add(this.listItems);
-      this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.panel1.Location = new System.Drawing.Point(0, 3);
-      this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(620, 215);
-      this.panel1.TabIndex = 3;
+      this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AddChannel,
+            this.removeChannel});
+      this.contextMenuStrip1.Name = "contextMenuStrip1";
+      this.contextMenuStrip1.Size = new System.Drawing.Size(161, 48);
       // 
-      // listItems
+      // removeChannel
       // 
-      this.listItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
-      this.listItems.DisplayMember = "Title";
-      this.listItems.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.listItems.FormattingEnabled = true;
-      this.listItems.Location = new System.Drawing.Point(0, 0);
-      this.listItems.Name = "listItems";
-      this.listItems.Size = new System.Drawing.Size(620, 215);
-      this.listItems.TabIndex = 1;
-      this.listItems.SelectedIndexChanged += new System.EventHandler(this.listItems_SelectedIndexChanged);
+      this.removeChannel.Enabled = false;
+      this.removeChannel.Name = "removeChannel";
+      this.removeChannel.Size = new System.Drawing.Size(160, 22);
+      this.removeChannel.Text = "Удалить ленту";
+      this.removeChannel.Click += new System.EventHandler(this.removeChannel_Click);
       // 
-      // обновитьToolStripMenuItem
+      // AddChannel
       // 
-      this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
-      this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-      this.обновитьToolStripMenuItem.Text = "Обновить";
-      this.обновитьToolStripMenuItem.Click += new System.EventHandler(this.RefreshChannel);
+      this.AddChannel.Name = "AddChannel";
+      this.AddChannel.Size = new System.Drawing.Size(160, 22);
+      this.AddChannel.Text = "Добавить ленту";
+      this.AddChannel.Click += new System.EventHandler(this.OpenUrl);
       // 
       // MainForm
       // 
@@ -328,9 +357,10 @@
       this.splitContainerChild.Panel2.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerChild)).EndInit();
       this.splitContainerChild.ResumeLayout(false);
+      this.panel1.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.channelBox)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.itemBox)).EndInit();
-      this.panel1.ResumeLayout(false);
+      this.contextMenuStrip1.ResumeLayout(false);
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -360,6 +390,9 @@
     private System.Windows.Forms.Panel panel1;
     private System.Windows.Forms.ListBox listItems;
     private System.Windows.Forms.ToolStripMenuItem обновитьToolStripMenuItem;
+    private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+    private System.Windows.Forms.ToolStripMenuItem removeChannel;
+    private System.Windows.Forms.ToolStripMenuItem AddChannel;
   }
 }
 

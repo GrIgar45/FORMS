@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Linq;
 using System.Xml;
 
 namespace FORMS {
@@ -7,26 +8,11 @@ namespace FORMS {
   /// </summary>
   internal static class Controller {
     private static BindingList<Channel> _channels = new BindingList<Channel>();
-    //private static BindingList<Item> _currentItem;
 
     /// <summary>
     /// Коллекция каналов
     /// </summary>
     internal static BindingList<Channel> Channels => _channels;
-
-    ///// <summary>
-    ///// Возвращает коллекцию эелементов новостей по индексу в коллекции каналов
-    ///// </summary>
-    ///// <param name="id">Индекс коллекции элементов новостей</param>
-    ///// <returns>Коллекция элементов новостей</returns>
-    //public static BindingList<Item> GetItems(int id) => _currentItem = _channels[id].GetItems();
-
-    ///// <summary>
-    ///// Возвращает элемент новости
-    ///// </summary>
-    ///// <param name="id">Индекс элемента новости</param>
-    ///// <returns>Элемент новости</returns>
-    //public static Item GeItem(int id) => _currentItem[id];
 
     /// <summary>
     /// Выполяет загрузку канала по адрессу
@@ -76,6 +62,7 @@ namespace FORMS {
       _channels.Add(new Channel(image, link, title, description, items, url));
       return null;
     }
+
     /// <summary>
     /// Выполняет обновление каналов лент
     /// </summary>
@@ -85,6 +72,10 @@ namespace FORMS {
       foreach (Channel channel in channels) {
         ParseChannel(channel.Path);
       }
+    }
+
+    public static void removeChannel(int id) {
+      _channels.Remove(_channels[id]);
     }
   }
 }
