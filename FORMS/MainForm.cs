@@ -14,7 +14,7 @@ namespace FORMS {
     /// Выполняет отображение формы открытия файла
     /// </summary>
     private void OpenUrl(object sender, EventArgs e) {
-      var f = new OpenUrlForm();
+      var f = new AdditionalForm("Добавление канала", "Открыть", true);
       f.ShowDialog();
       ListURL.DataSource = Controller.Channels;
       removeChannel.Enabled = true;
@@ -117,6 +117,11 @@ namespace FORMS {
 
     private void выходToolStripMenuItem_Click(object sender, EventArgs e) {
       Close();
+    }
+
+    private void SearchMenu_Click(object sender, EventArgs e) {
+      var f = new AdditionalForm("Поиск", "Найти", false);
+      f.ShowDialog();
     }
   }
 }

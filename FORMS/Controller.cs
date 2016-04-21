@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Xml;
 
@@ -76,6 +78,21 @@ namespace FORMS {
 
     public static void removeChannel(int id) {
       _channels.Remove(_channels[id]);
+    }
+
+    public static bool search(string keyWord) {
+      keyWord = keyWord.ToLower();
+      var sResItem = new BindingList<Item>();
+      foreach (Channel channel in _channels) {
+        foreach (Item item in channel.GetItems()) {
+          if (item.Title.ToLower().Contains(keyWord) || item.Description.ToLower().Contains(keyWord))
+            sResItem.Add(item);
+        }
+      }
+      if (sResItem.Count == 0)
+        return false;
+      _channels.Add(new Channel(null, String.Empty, $"Результаты посика {keyWord}", string.Empty, sResItem, string.Empty));
+      return true;
     }
   }
 }
