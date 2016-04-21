@@ -65,8 +65,11 @@
       this.Controls.Add(this.multipleValue);
       this.Controls.Add(this.button1);
       this.Controls.Add(this.url);
-      this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+      this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+      this.MaximizeBox = false;
+      this.MinimizeBox = false;
       this.Name = "OpenUrlForm";
+      this.ShowInTaskbar = false;
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
       this.Text = "Добавление канала";
       this.ResumeLayout(false);

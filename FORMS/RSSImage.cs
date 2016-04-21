@@ -15,10 +15,10 @@ namespace FORMS {
       GetBitmap(link);
     }
 
-    public RssImage(string url, string title, string link) {
+    public RssImage(string url, string link, string title) {
       Url = url;
-      Title = title;
       Link = link;
+      Title = title;
       Image = GetBitmap(url);
     }
 

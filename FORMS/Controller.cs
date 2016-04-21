@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Xml;
 
 namespace FORMS {
@@ -9,11 +6,7 @@ namespace FORMS {
     private static BindingList<Channel> _channels = new BindingList<Channel>();
     private static BindingList<Item> _currentItem;
 
-    internal static BindingList<Channel> Channels {
-      get {
-        return _channels;
-      }
-    }
+    internal static BindingList<Channel> Channels => _channels;
 
     public static bool ContaineTitle(string title) {
       foreach (var channel in _channels) {
@@ -31,9 +24,6 @@ namespace FORMS {
       var rssDocument = new XmlDocument();
       try {
         rssDocument.Load(url);
-      }
-      catch (NotSupportedException) {
-        return "Файл имеет недопустимый формат.";
       }
       catch {
         return "Не удалось загрузить документ.";

@@ -13,7 +13,7 @@ namespace FORMS {
         responce = Controller.ParseChannel(url.Text);
       if (responce == null && !multipleValue.Checked)
         Close();
-      else 
+      else if(!multipleValue.Checked)
         MessageBox.Show(responce, @"Ошибка");
     }
   }
