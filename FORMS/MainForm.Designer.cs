@@ -46,10 +46,10 @@
       this.listItems = new System.Windows.Forms.ListBox();
       this.splitter2 = new System.Windows.Forms.Splitter();
       this.channelBox = new System.Windows.Forms.PictureBox();
+      this.webBrowser1 = new System.Windows.Forms.WebBrowser();
       this.dateLabel = new System.Windows.Forms.Label();
       this.splitter1 = new System.Windows.Forms.Splitter();
       this.link = new System.Windows.Forms.LinkLabel();
-      this.description = new System.Windows.Forms.TextBox();
       this.itemBox = new System.Windows.Forms.PictureBox();
       this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
       this.menuStrip1.SuspendLayout();
@@ -75,7 +75,7 @@
             this.справкаToolStripMenuItem});
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
-      this.menuStrip1.Size = new System.Drawing.Size(754, 24);
+      this.menuStrip1.Size = new System.Drawing.Size(877, 24);
       this.menuStrip1.TabIndex = 1;
       this.menuStrip1.Text = "menuStrip1";
       // 
@@ -174,7 +174,7 @@
       // splitContainerMain.Panel2
       // 
       this.splitContainerMain.Panel2.Controls.Add(this.splitContainerChild);
-      this.splitContainerMain.Size = new System.Drawing.Size(754, 349);
+      this.splitContainerMain.Size = new System.Drawing.Size(877, 385);
       this.splitContainerMain.SplitterDistance = 130;
       this.splitContainerMain.SplitterWidth = 2;
       this.splitContainerMain.TabIndex = 2;
@@ -189,7 +189,7 @@
       this.ListURL.FormattingEnabled = true;
       this.ListURL.Location = new System.Drawing.Point(0, 0);
       this.ListURL.Name = "ListURL";
-      this.ListURL.Size = new System.Drawing.Size(128, 347);
+      this.ListURL.Size = new System.Drawing.Size(128, 383);
       this.ListURL.TabIndex = 0;
       this.ListURL.DoubleClick += new System.EventHandler(this.ListURL_DoubleClick);
       // 
@@ -234,16 +234,17 @@
       // 
       // splitContainerChild.Panel2
       // 
+      this.splitContainerChild.Panel2.Controls.Add(this.webBrowser1);
       this.splitContainerChild.Panel2.Controls.Add(this.dateLabel);
       this.splitContainerChild.Panel2.Controls.Add(this.splitter1);
       this.splitContainerChild.Panel2.Controls.Add(this.link);
-      this.splitContainerChild.Panel2.Controls.Add(this.description);
       this.splitContainerChild.Panel2.Controls.Add(this.itemBox);
       this.splitContainerChild.Panel2MinSize = 124;
-      this.splitContainerChild.Size = new System.Drawing.Size(622, 349);
-      this.splitContainerChild.SplitterDistance = 220;
+      this.splitContainerChild.Size = new System.Drawing.Size(745, 385);
+      this.splitContainerChild.SplitterDistance = 256;
       this.splitContainerChild.TabIndex = 0;
       this.splitContainerChild.TabStop = false;
+      this.splitContainerChild.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainerChild_SplitterMoved);
       // 
       // panel1
       // 
@@ -251,7 +252,7 @@
       this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.panel1.Location = new System.Drawing.Point(0, 3);
       this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(620, 215);
+      this.panel1.Size = new System.Drawing.Size(743, 251);
       this.panel1.TabIndex = 3;
       // 
       // listItems
@@ -262,7 +263,7 @@
       this.listItems.FormattingEnabled = true;
       this.listItems.Location = new System.Drawing.Point(0, 0);
       this.listItems.Name = "listItems";
-      this.listItems.Size = new System.Drawing.Size(620, 215);
+      this.listItems.Size = new System.Drawing.Size(743, 251);
       this.listItems.TabIndex = 1;
       this.listItems.SelectedIndexChanged += new System.EventHandler(this.listItems_SelectedIndexChanged);
       // 
@@ -274,7 +275,7 @@
       this.splitter2.Dock = System.Windows.Forms.DockStyle.Top;
       this.splitter2.Location = new System.Drawing.Point(0, 0);
       this.splitter2.Name = "splitter2";
-      this.splitter2.Size = new System.Drawing.Size(620, 3);
+      this.splitter2.Size = new System.Drawing.Size(743, 3);
       this.splitter2.TabIndex = 2;
       this.splitter2.TabStop = false;
       // 
@@ -284,19 +285,29 @@
       this.channelBox.Dock = System.Windows.Forms.DockStyle.Top;
       this.channelBox.Location = new System.Drawing.Point(0, 0);
       this.channelBox.Name = "channelBox";
-      this.channelBox.Size = new System.Drawing.Size(620, 0);
+      this.channelBox.Size = new System.Drawing.Size(743, 0);
       this.channelBox.TabIndex = 1;
       this.channelBox.TabStop = false;
       this.channelBox.Click += new System.EventHandler(this.channelBox_Click);
       // 
+      // webBrowser1
+      // 
+      this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.webBrowser1.Location = new System.Drawing.Point(0, 0);
+      this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+      this.webBrowser1.Name = "webBrowser1";
+      this.webBrowser1.Size = new System.Drawing.Size(743, 107);
+      this.webBrowser1.TabIndex = 6;
+      // 
       // dateLabel
       // 
+      this.dateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.dateLabel.AutoSize = true;
-      this.dateLabel.Dock = System.Windows.Forms.DockStyle.Right;
-      this.dateLabel.Location = new System.Drawing.Point(620, 107);
+      this.dateLabel.Location = new System.Drawing.Point(605, 110);
       this.dateLabel.Name = "dateLabel";
-      this.dateLabel.Size = new System.Drawing.Size(0, 13);
+      this.dateLabel.Size = new System.Drawing.Size(13, 13);
       this.dateLabel.TabIndex = 5;
+      this.dateLabel.Text = "1";
       // 
       // splitter1
       // 
@@ -304,7 +315,7 @@
       this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
       this.splitter1.Location = new System.Drawing.Point(0, 107);
       this.splitter1.Name = "splitter1";
-      this.splitter1.Size = new System.Drawing.Size(620, 3);
+      this.splitter1.Size = new System.Drawing.Size(743, 3);
       this.splitter1.TabIndex = 3;
       this.splitter1.TabStop = false;
       // 
@@ -317,18 +328,6 @@
       this.link.Size = new System.Drawing.Size(0, 13);
       this.link.TabIndex = 2;
       this.link.Click += new System.EventHandler(this.link_Click);
-      // 
-      // description
-      // 
-      this.description.BorderStyle = System.Windows.Forms.BorderStyle.None;
-      this.description.Dock = System.Windows.Forms.DockStyle.Top;
-      this.description.Location = new System.Drawing.Point(0, 0);
-      this.description.Multiline = true;
-      this.description.Name = "description";
-      this.description.ReadOnly = true;
-      this.description.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-      this.description.Size = new System.Drawing.Size(620, 107);
-      this.description.TabIndex = 1;
       // 
       // itemBox
       // 
@@ -348,13 +347,14 @@
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(754, 373);
+      this.ClientSize = new System.Drawing.Size(877, 409);
       this.Controls.Add(this.splitContainerMain);
       this.Controls.Add(this.menuStrip1);
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.MainMenuStrip = this.menuStrip1;
+      this.MinimumSize = new System.Drawing.Size(650, 300);
       this.Name = "MainForm";
-      this.Text = "Form1";
+      this.Text = "Сборка новостей";
       this.menuStrip1.ResumeLayout(false);
       this.menuStrip1.PerformLayout();
       this.splitContainerMain.Panel1.ResumeLayout(false);
@@ -390,7 +390,6 @@
     private System.Windows.Forms.LinkLabel link;
     private System.Windows.Forms.Splitter splitter1;
     private System.Windows.Forms.PictureBox channelBox;
-    private System.Windows.Forms.TextBox description;
     private System.Windows.Forms.ListBox ListURL;
     private System.Windows.Forms.Label dateLabel;
     private System.Windows.Forms.ToolStripMenuItem ViewChannals;
@@ -403,6 +402,7 @@
     private System.Windows.Forms.ToolStripMenuItem removeChannel;
     private System.Windows.Forms.ToolStripMenuItem AddChannel;
     private System.Windows.Forms.ToolStripMenuItem поискToolStripMenuItem;
+    private System.Windows.Forms.WebBrowser webBrowser1;
   }
 }
 

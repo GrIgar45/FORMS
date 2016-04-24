@@ -28,7 +28,9 @@ namespace FORMS {
       else if(!multipleValue.Checked)
         MessageBox.Show(responce, @"Ошибка");
     }
-
+    /// <summary>
+    /// Поиск по ключевому слову
+    /// </summary>
     private void button1_Click2(object sender, EventArgs e) {
       var res = Controller.search(textBox.Text);
       if (res == false) {

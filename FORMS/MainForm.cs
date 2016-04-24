@@ -1,7 +1,5 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Globalization;
 using System.Windows.Forms;
 
 namespace FORMS {
@@ -53,20 +51,20 @@ namespace FORMS {
       if (ListURL.SelectedIndex == -1 || listItems.SelectedIndex == -1) {
         itemBox.Width = 0;
         link.Text = string.Empty;
-        description.Text = string.Empty;
+        webBrowser1.DocumentText = string.Empty;
         return;
       }
       item = Controller.Channels[ListURL.SelectedIndex].GetItems()[listItems.SelectedIndex];
       var bm = RssImage.GetBitmap(item.Image);
       if (bm != null) {
         itemBox.BackgroundImage = bm;
-        float ratio = (float)itemBox.Height / bm.Height;
+        var ratio = (float)itemBox.Height / bm.Height;
         itemBox.Width = (int)(bm.Width * ratio);
       }
       else
         itemBox.Width = 0;
 
-      description.Text = item.Description;
+      webBrowser1.DocumentText = item.Description;
       DateTime dt = DateTime.Parse(item.Date);
       dateLabel.Text = dt.ToLongTimeString() + @" " + dt.ToLongDateString();
       link.Text = @"Перейти к источнику";
@@ -102,7 +100,9 @@ namespace FORMS {
       listItems.DataSource = null;
       listItems.DisplayMember = "Title";
     }
-
+    /// <summary>
+    /// Вызывает метод удаления выбраного канала
+    /// </summary>
     private void removeChannel_Click(object sender, EventArgs e) {
       int id = ListURL.SelectedIndex;
       listItems.ClearSelected();
@@ -114,14 +114,23 @@ namespace FORMS {
       if (ListURL.Items.Count == 0)
         removeChannel.Enabled = false;
     }
-
+    /// <summary>
+    /// Закрывает программу
+    /// </summary>
     private void выходToolStripMenuItem_Click(object sender, EventArgs e) {
       Close();
     }
-
+    /// <summary>
+    /// Вызывает метод поиска
+    /// </summary>
     private void SearchMenu_Click(object sender, EventArgs e) {
       var f = new AdditionalForm("Поиск", "Найти", false);
       f.ShowDialog();
+    }
+
+    private void splitContainerChild_SplitterMoved(object sender, SplitterEventArgs e) {
+      var ratio = (float) itemBox.BackgroundImage.Height/itemBox.BackgroundImage.Width;
+      itemBox.Width = (int) (itemBox.Height/ratio);
     }
   }
 }

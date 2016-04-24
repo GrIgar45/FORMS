@@ -1,7 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Globalization;
-using System.Linq;
 using System.Xml;
 
 namespace FORMS {
@@ -69,7 +67,7 @@ namespace FORMS {
     /// Выполняет обновление каналов лент
     /// </summary>
     public static void Refresh() {
-      BindingList<Channel> channels = _channels;
+      var channels = _channels;
       _channels = new BindingList<Channel>();
       foreach (Channel channel in channels) {
         ParseChannel(channel.Path);
