@@ -305,9 +305,8 @@
       this.dateLabel.AutoSize = true;
       this.dateLabel.Location = new System.Drawing.Point(605, 110);
       this.dateLabel.Name = "dateLabel";
-      this.dateLabel.Size = new System.Drawing.Size(13, 13);
+      this.dateLabel.Size = new System.Drawing.Size(0, 13);
       this.dateLabel.TabIndex = 5;
-      this.dateLabel.Text = "1";
       // 
       // splitter1
       // 
