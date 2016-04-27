@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Windows.Forms;
+using Awesomium.Core;
 
 namespace FORMS {
   public partial class MainForm : Form {
@@ -51,7 +52,7 @@ namespace FORMS {
       if (ListURL.SelectedIndex == -1 || listItems.SelectedIndex == -1) {
         itemBox.Width = 0;
         link.Text = string.Empty;
-        webBrowser1.DocumentText = string.Empty;
+        webControl1.LoadHTML(string.Empty);
         return;
       }
       item = Controller.Channels[ListURL.SelectedIndex].GetItems()[listItems.SelectedIndex];
@@ -64,7 +65,7 @@ namespace FORMS {
       else
         itemBox.Width = 0;
 
-      webBrowser1.DocumentText = item.Description;
+      webControl1.LoadHTML(item.Description);
       DateTime dt = DateTime.Parse(item.Date);
       dateLabel.Text = dt.ToLongTimeString() + @" " + dt.ToLongDateString();
       link.Text = @"Перейти к источнику";

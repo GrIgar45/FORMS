@@ -46,12 +46,12 @@
       this.listItems = new System.Windows.Forms.ListBox();
       this.splitter2 = new System.Windows.Forms.Splitter();
       this.channelBox = new System.Windows.Forms.PictureBox();
-      this.webBrowser1 = new System.Windows.Forms.WebBrowser();
       this.dateLabel = new System.Windows.Forms.Label();
       this.splitter1 = new System.Windows.Forms.Splitter();
       this.link = new System.Windows.Forms.LinkLabel();
       this.itemBox = new System.Windows.Forms.PictureBox();
       this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+      this.webControl1 = new Awesomium.Windows.Forms.WebControl(this.components);
       this.menuStrip1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
       this.splitContainerMain.Panel1.SuspendLayout();
@@ -234,7 +234,7 @@
       // 
       // splitContainerChild.Panel2
       // 
-      this.splitContainerChild.Panel2.Controls.Add(this.webBrowser1);
+      this.splitContainerChild.Panel2.Controls.Add(this.webControl1);
       this.splitContainerChild.Panel2.Controls.Add(this.dateLabel);
       this.splitContainerChild.Panel2.Controls.Add(this.splitter1);
       this.splitContainerChild.Panel2.Controls.Add(this.link);
@@ -290,15 +290,6 @@
       this.channelBox.TabStop = false;
       this.channelBox.Click += new System.EventHandler(this.channelBox_Click);
       // 
-      // webBrowser1
-      // 
-      this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.webBrowser1.Location = new System.Drawing.Point(0, 0);
-      this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-      this.webBrowser1.Name = "webBrowser1";
-      this.webBrowser1.Size = new System.Drawing.Size(743, 107);
-      this.webBrowser1.TabIndex = 6;
-      // 
       // dateLabel
       // 
       this.dateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -341,6 +332,14 @@
       // toolTip1
       // 
       this.toolTip1.AutomaticDelay = 5000;
+      // 
+      // webControl1
+      // 
+      this.webControl1.ContextMenuStrip = this.contextMenuStrip1;
+      this.webControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.webControl1.Location = new System.Drawing.Point(0, 0);
+      this.webControl1.Size = new System.Drawing.Size(743, 107);
+      this.webControl1.TabIndex = 6;
       // 
       // MainForm
       // 
@@ -401,7 +400,7 @@
     private System.Windows.Forms.ToolStripMenuItem removeChannel;
     private System.Windows.Forms.ToolStripMenuItem AddChannel;
     private System.Windows.Forms.ToolStripMenuItem поискToolStripMenuItem;
-    private System.Windows.Forms.WebBrowser webBrowser1;
+    private Awesomium.Windows.Forms.WebControl webControl1;
   }
 }
 
