@@ -27,15 +27,17 @@
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.открытьURLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.поискToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.OpenRSS = new System.Windows.Forms.ToolStripMenuItem();
+      this.SearchButton = new System.Windows.Forms.ToolStripMenuItem();
+      this.SaveSession = new System.Windows.Forms.ToolStripMenuItem();
+      this.LoadSession = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
       this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.видToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.ViewChannals = new System.Windows.Forms.ToolStripMenuItem();
-      this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.RefreshButton = new System.Windows.Forms.ToolStripMenuItem();
       this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.AboutAuthor = new System.Windows.Forms.ToolStripMenuItem();
       this.splitContainerMain = new System.Windows.Forms.SplitContainer();
       this.ListURL = new System.Windows.Forms.ListBox();
       this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -46,12 +48,12 @@
       this.listItems = new System.Windows.Forms.ListBox();
       this.splitter2 = new System.Windows.Forms.Splitter();
       this.channelBox = new System.Windows.Forms.PictureBox();
+      this.webControl1 = new Awesomium.Windows.Forms.WebControl(this.components);
       this.dateLabel = new System.Windows.Forms.Label();
       this.splitter1 = new System.Windows.Forms.Splitter();
       this.link = new System.Windows.Forms.LinkLabel();
       this.itemBox = new System.Windows.Forms.PictureBox();
       this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-      this.webControl1 = new Awesomium.Windows.Forms.WebControl(this.components);
       this.menuStrip1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
       this.splitContainerMain.Panel1.SuspendLayout();
@@ -82,37 +84,53 @@
       // файлToolStripMenuItem
       // 
       this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.открытьURLToolStripMenuItem,
-            this.поискToolStripMenuItem,
+            this.OpenRSS,
+            this.SearchButton,
+            this.SaveSession,
+            this.LoadSession,
             this.toolStripSeparator1,
             this.выходToolStripMenuItem});
       this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
       this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
       this.файлToolStripMenuItem.Text = "Файл";
       // 
-      // открытьURLToolStripMenuItem
+      // OpenRSS
       // 
-      this.открытьURLToolStripMenuItem.Name = "открытьURLToolStripMenuItem";
-      this.открытьURLToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-      this.открытьURLToolStripMenuItem.Text = "Добавить канал";
-      this.открытьURLToolStripMenuItem.Click += new System.EventHandler(this.OpenUrl);
+      this.OpenRSS.Name = "OpenRSS";
+      this.OpenRSS.Size = new System.Drawing.Size(176, 22);
+      this.OpenRSS.Text = "Добавить канал";
+      this.OpenRSS.Click += new System.EventHandler(this.OpenUrl);
       // 
-      // поискToolStripMenuItem
+      // SearchButton
       // 
-      this.поискToolStripMenuItem.Name = "поискToolStripMenuItem";
-      this.поискToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-      this.поискToolStripMenuItem.Text = "Поиск";
-      this.поискToolStripMenuItem.Click += new System.EventHandler(this.SearchMenu_Click);
+      this.SearchButton.Name = "SearchButton";
+      this.SearchButton.Size = new System.Drawing.Size(176, 22);
+      this.SearchButton.Text = "Поиск";
+      this.SearchButton.Click += new System.EventHandler(this.SearchMenu_Click);
+      // 
+      // SaveSession
+      // 
+      this.SaveSession.Name = "SaveSession";
+      this.SaveSession.Size = new System.Drawing.Size(176, 22);
+      this.SaveSession.Text = "Сохранить сессию";
+      this.SaveSession.Click += new System.EventHandler(this.SaveSession_Click);
+      // 
+      // LoadSession
+      // 
+      this.LoadSession.Name = "LoadSession";
+      this.LoadSession.Size = new System.Drawing.Size(176, 22);
+      this.LoadSession.Text = "Загрузить сессию";
+      this.LoadSession.Click += new System.EventHandler(this.LoadSession_Click);
       // 
       // toolStripSeparator1
       // 
       this.toolStripSeparator1.Name = "toolStripSeparator1";
-      this.toolStripSeparator1.Size = new System.Drawing.Size(158, 6);
+      this.toolStripSeparator1.Size = new System.Drawing.Size(173, 6);
       // 
       // выходToolStripMenuItem
       // 
       this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-      this.выходToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+      this.выходToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
       this.выходToolStripMenuItem.Text = "Выход";
       this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
       // 
@@ -120,7 +138,7 @@
       // 
       this.видToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ViewChannals,
-            this.обновитьToolStripMenuItem});
+            this.RefreshButton});
       this.видToolStripMenuItem.Name = "видToolStripMenuItem";
       this.видToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
       this.видToolStripMenuItem.Text = "Вид";
@@ -135,27 +153,27 @@
       this.ViewChannals.Text = "Список каналов";
       this.ViewChannals.CheckedChanged += new System.EventHandler(this.ViewChannel);
       // 
-      // обновитьToolStripMenuItem
+      // RefreshButton
       // 
-      this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
-      this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-      this.обновитьToolStripMenuItem.Text = "Обновить";
-      this.обновитьToolStripMenuItem.Click += new System.EventHandler(this.RefreshChannel);
+      this.RefreshButton.Name = "RefreshButton";
+      this.RefreshButton.Size = new System.Drawing.Size(163, 22);
+      this.RefreshButton.Text = "Обновить";
+      this.RefreshButton.Click += new System.EventHandler(this.RefreshChannel);
       // 
       // справкаToolStripMenuItem
       // 
       this.справкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.оПрограммеToolStripMenuItem});
+            this.AboutAuthor});
       this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
       this.справкаToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
       this.справкаToolStripMenuItem.Text = "Справка";
       // 
-      // оПрограммеToolStripMenuItem
+      // AboutAuthor
       // 
-      this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-      this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-      this.оПрограммеToolStripMenuItem.Text = "О программе";
-      this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.ShowAbout);
+      this.AboutAuthor.Name = "AboutAuthor";
+      this.AboutAuthor.Size = new System.Drawing.Size(149, 22);
+      this.AboutAuthor.Text = "О программе";
+      this.AboutAuthor.Click += new System.EventHandler(this.ShowAbout);
       // 
       // splitContainerMain
       // 
@@ -290,6 +308,14 @@
       this.channelBox.TabStop = false;
       this.channelBox.Click += new System.EventHandler(this.channelBox_Click);
       // 
+      // webControl1
+      // 
+      this.webControl1.ContextMenuStrip = this.contextMenuStrip1;
+      this.webControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.webControl1.Location = new System.Drawing.Point(0, 0);
+      this.webControl1.Size = new System.Drawing.Size(743, 107);
+      this.webControl1.TabIndex = 6;
+      // 
       // dateLabel
       // 
       this.dateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -333,14 +359,6 @@
       // 
       this.toolTip1.AutomaticDelay = 5000;
       // 
-      // webControl1
-      // 
-      this.webControl1.ContextMenuStrip = this.contextMenuStrip1;
-      this.webControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.webControl1.Location = new System.Drawing.Point(0, 0);
-      this.webControl1.Size = new System.Drawing.Size(743, 107);
-      this.webControl1.TabIndex = 6;
-      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -376,12 +394,12 @@
     #endregion
     private System.Windows.Forms.MenuStrip menuStrip1;
     private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem открытьURLToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem OpenRSS;
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem видToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem AboutAuthor;
     private System.Windows.Forms.SplitContainer splitContainerMain;
     private System.Windows.Forms.SplitContainer splitContainerChild;
     private System.Windows.Forms.PictureBox itemBox;
@@ -395,12 +413,14 @@
     private System.Windows.Forms.Splitter splitter2;
     private System.Windows.Forms.Panel panel1;
     private System.Windows.Forms.ListBox listItems;
-    private System.Windows.Forms.ToolStripMenuItem обновитьToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem RefreshButton;
     private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     private System.Windows.Forms.ToolStripMenuItem removeChannel;
     private System.Windows.Forms.ToolStripMenuItem AddChannel;
-    private System.Windows.Forms.ToolStripMenuItem поискToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem SearchButton;
     private Awesomium.Windows.Forms.WebControl webControl1;
+    private System.Windows.Forms.ToolStripMenuItem SaveSession;
+    private System.Windows.Forms.ToolStripMenuItem LoadSession;
   }
 }
 

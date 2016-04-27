@@ -32,7 +32,7 @@ namespace FORMS {
     /// Поиск по ключевому слову
     /// </summary>
     private void button1_Click2(object sender, EventArgs e) {
-      var res = Controller.search(textBox.Text);
+      var res = Controller.Search(textBox.Text);
       if (res == false) {
         MessageBox.Show(@"Ничего не найдено", @"Информация");
       }

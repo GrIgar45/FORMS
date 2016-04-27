@@ -17,6 +17,7 @@ namespace FORMS {
       f.ShowDialog();
       ListURL.DataSource = Controller.Channels;
       removeChannel.Enabled = true;
+      ListURL.Refresh();
     }
     /// <summary>
     /// Выполняет отображение списка новостей
@@ -41,7 +42,7 @@ namespace FORMS {
     /// Выполняет переход и источнику новости
     /// </summary>
     private void link_Click(object sender, EventArgs e) {
-      Item item = Controller.Channels[ListURL.SelectedIndex].GetItems()[listItems.SelectedIndex];
+      var item = Controller.Channels[ListURL.SelectedIndex].GetItems()[listItems.SelectedIndex];
       Process.Start(item.Link);
     }
     /// <summary>
@@ -110,7 +111,7 @@ namespace FORMS {
       listItems.DataSource = null;
       listItems.DisplayMember = "Title";
       ListURL.ClearSelected();
-      Controller.removeChannel(id);
+      Controller.RemoveChannel(id);
       channelBox.Height = 0;
       if (ListURL.Items.Count == 0)
         removeChannel.Enabled = false;
@@ -130,8 +131,19 @@ namespace FORMS {
     }
 
     private void splitContainerChild_SplitterMoved(object sender, SplitterEventArgs e) {
+      if (itemBox.BackgroundImage == null) return;
       var ratio = (float) itemBox.BackgroundImage.Height/itemBox.BackgroundImage.Width;
       itemBox.Width = (int) (itemBox.Height/ratio);
+    }
+
+    private void SaveSession_Click(object sender, EventArgs e) {
+      Controller.SaveSession();
+    }
+
+    private void LoadSession_Click(object sender, EventArgs e) {
+      Controller.LoadSession();
+      ListURL.DataSource = Controller.Channels;
+      ListURL.Refresh();
     }
   }
 }
